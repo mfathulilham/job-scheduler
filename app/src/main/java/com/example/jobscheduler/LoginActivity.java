@@ -11,7 +11,7 @@ import android.widget.EditText;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
 
-    
+
     private EditText edtEmail,edtPass;
     private Button btnLogin;
     private String email,pass;
@@ -52,7 +52,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if (!(email.isEmpty() && pass.isEmpty())) {
             if (email.equals("123456") && pass.equals("123456")){
                 Intent intent = new Intent(this,MainActivity.class);
-                startActivity(intent);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                this.startActivity(intent);
             }
         }
     }
