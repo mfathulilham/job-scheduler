@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="20dp"
     tools:context=".PeopleFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -13,29 +12,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="40sp"
-        android:text="Hi, "
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"/>
+        android:text="Hi, "/>
     <TextView
         android:id="@+id/tvName"
+        android:layout_toRightOf="@id/tvHai"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="40sp"
         android:text="Fathul"
-        style="@style/title_text"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@id/tvHai"/>
+        style="@style/title_text"/>
     <ImageView
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:src="@drawable/ic_user_3"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_alignParentRight="true"
         android:layout_marginRight="15dp"/>
     <EditText
         android:id="@+id/edtSearch"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_below="@id/tvHai"
         android:hint="Search..."
         android:drawableLeft="@drawable/ic_search"
         app:layout_constraintTop_toBottomOf="@id/tvHai"
@@ -45,8 +41,10 @@
         android:background="@drawable/stroke_black"/>
     <TextView
         android:id="@+id/tvTitile2"
+        android:layout_below="@id/edtSearch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
         android:textSize="20sp"
         android:text="People List :"
         style="@style/title_text"
@@ -56,9 +54,10 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvPeople"
+        android:overScrollMode="never"
+        android:layout_below="@id/tvTitile2"
+        tools:listitem="@layout/people_list_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        app:layout_constraintTop_toBottomOf="@id/tvTitile2"/>
+        android:layout_height="match_parent"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
