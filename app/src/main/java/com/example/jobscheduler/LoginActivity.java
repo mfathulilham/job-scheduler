@@ -50,7 +50,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             alertDialog.dismiss();
         }
         if (!(email.isEmpty() && pass.isEmpty())) {
-            if (email.equals("123456") && pass.equals("123456")){
+            if (email.equals("123") && pass.equals("123")){
                 Intent intent = new Intent(this,MainActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 this.startActivity(intent);
