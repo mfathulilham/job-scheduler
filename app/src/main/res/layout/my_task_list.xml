@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="170dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="15dp"
+    android:layout_marginStart="15dp"
+    android:layout_marginEnd="15dp"
+    android:elevation="8dp"
+    android:padding="10dp"
+    app:cardCornerRadius="8dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/taskTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pengurusan KRS"
+            android:textSize="20sp"
+            style="@style/title_text"
+            android:drawableLeft="@drawable/ic_tasks"
+            android:drawablePadding="10dp"
+            android:layout_margin="20dp"/>
+
+        <TextView
+            android:id="@+id/taskDeskripsi"
+            android:layout_below="@id/taskTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Deskripsi : Pengurusan KRS di bagian..."
+            android:fontFamily="sans-serif"
+            android:textSize="18sp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"/>
+        <ImageView
+            android:id="@+id/line"
+            android:layout_below="@id/taskDeskripsi"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray_tua"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="15dp"/>
+        <TextView
+            android:id="@+id/taskDue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/line"
+            android:textSize="17sp"
+            android:text="Due Fri 18.30 PM"
+            android:fontFamily="sans-serif"
+            android:textColor="#F44336"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="5dp"/>
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
