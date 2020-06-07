@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -41,20 +42,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void userLogin() {
         email = edtEmail.getText().toString().trim();
         pass = edtPass.getText().toString().trim();
-        if (email.isEmpty()) {
-            edtEmail.setError("Insert username first");
-            alertDialog.dismiss();
-        }
-        if (pass.isEmpty()) {
-            edtPass.setError("Insert password first");
-            alertDialog.dismiss();
-        }
-        if (!(email.isEmpty() && pass.isEmpty())) {
-            if (email.equals("123") && pass.equals("123")){
+        if (email.equals("123") && pass.equals("123")){
                 Intent intent = new Intent(this,MainActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                Toast.makeText(getApplicationContext(),"Login succesfully",Toast.LENGTH_SHORT).show();
                 this.startActivity(intent);
-            }
+        } else
+            {
+            edtEmail.setError("Username or Password false");
+            alertDialog.dismiss();
         }
     }
 
