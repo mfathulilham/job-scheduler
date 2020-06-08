@@ -27,7 +27,7 @@
     <ImageView
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:src="@drawable/ic_user_3"
+        android:src="@drawable/ic_user_6"
         android:layout_alignParentRight="true"
         android:layout_marginRight="15dp"/>
     <EditText

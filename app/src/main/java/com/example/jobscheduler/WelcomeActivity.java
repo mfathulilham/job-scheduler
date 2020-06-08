@@ -9,14 +9,16 @@ import android.widget.Button;
 
 public class WelcomeActivity extends AppCompatActivity implements View.OnClickListener {
 
-    Button btnLogin;
+    Button btnLogin,btnRegister;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
         btnLogin = findViewById(R.id.btnLogin);
+        btnRegister = findViewById(R.id.btnRegister);
         btnLogin.setOnClickListener(this);
+        btnRegister.setOnClickListener(this);
     }
 
     @Override
@@ -24,6 +26,11 @@ public class WelcomeActivity extends AppCompatActivity implements View.OnClickLi
         switch (view.getId()){
             case R.id.btnLogin : {
                 Intent intent = new Intent(this, LoginActivity.class);
+                startActivity(intent);
+                break;
+            }
+            case R.id.btnRegister : {
+                Intent intent = new Intent(this, RegisterActivity.class);
                 startActivity(intent);
                 break;
             }
