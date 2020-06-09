@@ -39,7 +39,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:background="@drawable/stroke_black"
-        android:hint="Contoh : mfathulilhamm@log.com"
+        android:hint="userapp@gmail.com"
         android:paddingLeft="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
