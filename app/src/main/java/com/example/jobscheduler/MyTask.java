@@ -3,6 +3,10 @@ package com.example.jobscheduler;
 public class MyTask {
     String title,desc,due;
 
+    public MyTask() {
+
+    }
+
     public MyTask(String title, String desc, String due) {
         this.title = title;
         this.desc = desc;

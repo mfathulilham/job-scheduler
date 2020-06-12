@@ -129,7 +129,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             user = new User(username,email,password,phone,occup,address);
-                            database.getReference("Users").child(mAuth.getCurrentUser().getUid()).setValue(user);
+                            mdatabase.child(mAuth.getCurrentUser().getUid()).setValue(user);
                             finish();
                             Toast.makeText(RegisterActivity.this, "Registration Success",
                                     Toast.LENGTH_SHORT).show();

@@ -9,13 +9,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MyTaskAdapter extends RecyclerView.Adapter<MyTaskAdapter.MyViewHolder> {
-    List<MyTask> tList;
+    ArrayList<MyTask> tList;
     Context context;
 
-    public MyTaskAdapter(List<MyTask> tList, Context context) {
+    public MyTaskAdapter(ArrayList<MyTask> tList, Context context) {
         this.tList = tList;
         this.context = context;
     }
