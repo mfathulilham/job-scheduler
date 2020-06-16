@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -19,18 +20,21 @@ public class AddMyTaskActivity extends AppCompatActivity implements View.OnClick
     Button btnAdd, btnCancel;
     String title, desc, due;
 
-    private FirebaseAuth mAuth;
     private DatabaseReference mdatabase;
     private FirebaseDatabase database;
+    FirebaseUser firebaseUser;
     Integer numRandom = new Random().nextInt();
+    private String uid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_my_task);
-        database = FirebaseDatabase.getInstance();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        firebaseUser = mAuth.getCurrentUser();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
         mdatabase = database.getReference("MyTask");
-        mAuth = FirebaseAuth.getInstance();
+        uid= firebaseUser.getUid();
 
         edtTitle = findViewById(R.id.edtTitle);
         edtDeskripsi = findViewById(R.id.edtDeskripsi);
@@ -50,7 +54,7 @@ public class AddMyTaskActivity extends AppCompatActivity implements View.OnClick
                 desc = edtDeskripsi.getText().toString().trim();
                 due = edtDue.getText().toString().trim();
                 MyTask myTask = new MyTask(title, desc, due);
-                mdatabase.child(mAuth.getCurrentUser().getUid()).child("MyTask" + numRandom).setValue(myTask);
+                mdatabase.child(uid).child("MyTask" + numRandom).setValue(myTask);
                 finish();
             }
             case R.id.btnCancel: {

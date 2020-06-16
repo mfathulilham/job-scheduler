@@ -1,7 +1,7 @@
 package com.example.jobscheduler;
 
 public class MyTask {
-    String title,desc,due;
+    private String title,desc,due;
 
     public MyTask() {
 
@@ -17,23 +17,12 @@ public class MyTask {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public String getDesc() {
         return desc;
-    }
-
-    public void setDesc(String desc) {
-        this.desc = desc;
     }
 
     public String getDue() {
         return due;
     }
 
-    public void setDue(String due) {
-        this.due = due;
-    }
 }

@@ -1,6 +1,7 @@
 package com.example.jobscheduler;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -29,6 +30,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private FirebaseAuth mAuth;
     private TextView tvRegis;
     private ProgressDialog progressDialog;
+    private FirebaseAuth.AuthStateListener mAuthListener;
+    private FirebaseUser firebaseUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,20 +39,38 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_login);
         edtEmail = findViewById(R.id.edtEmail);
         edtPass = findViewById(R.id.edtPass);
-
-        mAuth = FirebaseAuth.getInstance();
         login = findViewById(R.id.btnLogin);
-
         tvRegis = findViewById(R.id.tvRegister);
-
         login.setOnClickListener(this);
         tvRegis.setOnClickListener(this);
+
+        mAuth = FirebaseAuth.getInstance();
+        firebaseUser = mAuth.getCurrentUser();
+
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null){
+                    String UserId = firebaseUser.getUid();
+                    firebaseUser = user;
+                    Toast.makeText(LoginActivity.this,"User ID\n"+UserId ,Toast.LENGTH_SHORT).show();
+                }
+                else Toast.makeText(LoginActivity.this,"No Id Got",Toast.LENGTH_SHORT).show();
+            }
+        };
     }
+
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        firebaseUser = mAuth.getCurrentUser();
+//    }
 
     @Override
     protected void onStart() {
         super.onStart();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
+        firebaseUser = mAuth.getCurrentUser();
     }
 
     @Override
@@ -68,6 +89,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void userLogin() {
+
         email = edtEmail.getText().toString().trim();
         pass = edtPass.getText().toString().trim();
         progressDialog = new ProgressDialog(this);
@@ -91,7 +113,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                FirebaseUser user = mAuth.getCurrentUser();
+//                                FirebaseUser user = mAuth.getCurrentUser();
                                 Toast.makeText(LoginActivity.this, "Login Success..", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(LoginActivity.this,MainActivity.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);

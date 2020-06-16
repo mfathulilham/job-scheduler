@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -34,12 +35,14 @@ public class MyTaskFragment extends Fragment {
 
     View view;
     RecyclerView recyclerView;
-    ArrayList<MyTask> tList;
+    List<MyTask> tList;
     MyTaskAdapter myTaskAdapter;
-    DatabaseReference mdatabase;
-    FirebaseDatabase database;
+
+    private DatabaseReference mdatabase;
     private FirebaseAuth mAuth;
-    FloatingActionButton floatingActionButton;
+    private FirebaseUser firebaseUser;
+    private String uid;
+
     Integer numRandom = new Random().nextInt();
 
     public MyTaskFragment() {
@@ -52,17 +55,16 @@ public class MyTaskFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_my_task, container, false);
 
-        database = FirebaseDatabase.getInstance();
-        mdatabase = database.getReference("MyTask");
-        mAuth = FirebaseAuth.getInstance();
 
         recyclerView = view.findViewById(R.id.rvMyTask);
-        floatingActionButton = view.findViewById(R.id.fab);
+        mAuth = FirebaseAuth.getInstance();
+        firebaseUser = mAuth.getCurrentUser();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        uid= firebaseUser.getUid();
+        mdatabase = database.getReference("MyTask").child(uid);
 
-//        myTaskAdapter = new MyTaskAdapter(tList,getContext());
-//        recyclerView.setAdapter(myTaskAdapter);
+        FloatingActionButton floatingActionButton = view.findViewById(R.id.fab);
 
-//        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         showRecyclerList();
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,21 +76,22 @@ public class MyTaskFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        firebaseUser = mAuth.getCurrentUser();
+    }
+
     private void showRecyclerList() {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        tList = new ArrayList<MyTask>();
+        tList = new ArrayList<>();
 
-        //Retrieve  Data from Firebase
-//        mdatabase = FirebaseDatabase.getInstance().getReference().child("MyTask");
-        mdatabase.child(mAuth.getCurrentUser().getUid());
         mdatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 //set code to retrieve data and replace Layout
-                for (DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
+                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                     MyTask myTask = dataSnapshot1.getValue(MyTask.class);
-//                    String uid= mAuth.getCurrentUser().getUid();
-//                    MyTask myTask = dataSnapshot1.child(uid).getValue(MyTask.class);
                     tList.add(myTask);
                 }
                 myTaskAdapter = new MyTaskAdapter(tList, getContext());
@@ -102,6 +105,4 @@ public class MyTaskFragment extends Fragment {
             }
         });
     }
-
-
 }

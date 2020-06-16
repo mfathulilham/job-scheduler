@@ -1,6 +1,7 @@
 package com.example.jobscheduler;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,14 +10,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class MyTaskAdapter extends RecyclerView.Adapter<MyTaskAdapter.MyViewHolder> {
-    ArrayList<MyTask> tList;
+    public class MyTaskAdapter extends RecyclerView.Adapter<MyTaskAdapter.MyViewHolder> {
+    List<MyTask> tList;
     Context context;
 
-    public MyTaskAdapter(ArrayList<MyTask> tList, Context context) {
+    public MyTaskAdapter(List<MyTask> tList, Context context) {
         this.tList = tList;
         this.context = context;
     }
@@ -34,6 +34,7 @@ public class MyTaskAdapter extends RecyclerView.Adapter<MyTaskAdapter.MyViewHold
         holder.tvTitle.setText(tList.get(position).getTitle());
         holder.tvDesc.setText(tList.get(position).getDesc());
         holder.tvDue.setText(tList.get(position).getDue());
+//        Log.d("TESTING","Value Of List"+tList.get(0).getTitle());
     }
 
     @Override
