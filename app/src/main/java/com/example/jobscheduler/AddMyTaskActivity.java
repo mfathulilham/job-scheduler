@@ -23,7 +23,7 @@ public class AddMyTaskActivity extends AppCompatActivity implements View.OnClick
     private DatabaseReference mdatabase;
     private FirebaseDatabase database;
     FirebaseUser firebaseUser;
-    Integer numRandom = new Random().nextInt();
+//    Integer numRandom = new Random().nextInt();
     private String uid;
 
     @Override
@@ -54,7 +54,8 @@ public class AddMyTaskActivity extends AppCompatActivity implements View.OnClick
                 desc = edtDeskripsi.getText().toString().trim();
                 due = edtDue.getText().toString().trim();
                 MyTask myTask = new MyTask(title, desc, due);
-                mdatabase.child(uid).child("MyTask" + numRandom).setValue(myTask);
+//                mdatabase.child(uid).child("MyTask" + numRandom).setValue(myTask);
+                mdatabase.child(uid).push().setValue(myTask);
                 finish();
             }
             case R.id.btnCancel: {

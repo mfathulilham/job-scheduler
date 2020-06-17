@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -25,7 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+//import java.util.Random;
 
 
 /**
@@ -33,17 +33,17 @@ import java.util.Random;
  */
 public class MyTaskFragment extends Fragment {
 
-    View view;
-    RecyclerView recyclerView;
-    List<MyTask> tList;
-    MyTaskAdapter myTaskAdapter;
+
+    private ProgressBar progressBar;
+    private RecyclerView recyclerView;
+    private List<MyTask> tList;
+    private MyTaskAdapter myTaskAdapter;
 
     private DatabaseReference mdatabase;
     private FirebaseAuth mAuth;
     private FirebaseUser firebaseUser;
-    private String uid;
 
-    Integer numRandom = new Random().nextInt();
+//    Integer numRandom = new Random().nextInt();
 
     public MyTaskFragment() {
         // Required empty public constructor
@@ -53,14 +53,16 @@ public class MyTaskFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_my_task, container, false);
+        View view = inflater.inflate(R.layout.fragment_my_task, container, false);
 
+
+        progressBar = view.findViewById(R.id.progressBar);
 
         recyclerView = view.findViewById(R.id.rvMyTask);
         mAuth = FirebaseAuth.getInstance();
         firebaseUser = mAuth.getCurrentUser();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        uid= firebaseUser.getUid();
+        String uid = firebaseUser.getUid();
         mdatabase = database.getReference("MyTask").child(uid);
 
         FloatingActionButton floatingActionButton = view.findViewById(R.id.fab);
@@ -79,10 +81,12 @@ public class MyTaskFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        firebaseUser = mAuth.getCurrentUser();
+        if (firebaseUser != null)
+            firebaseUser = mAuth.getCurrentUser();
     }
 
     private void showRecyclerList() {
+        recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         tList = new ArrayList<>();
 
@@ -90,6 +94,7 @@ public class MyTaskFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 //set code to retrieve data and replace Layout
+                tList.clear();
                 for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                     MyTask myTask = dataSnapshot1.getValue(MyTask.class);
                     tList.add(myTask);
@@ -97,6 +102,7 @@ public class MyTaskFragment extends Fragment {
                 myTaskAdapter = new MyTaskAdapter(tList, getContext());
                 recyclerView.setAdapter(myTaskAdapter);
                 myTaskAdapter.notifyDataSetChanged();
+                progressBar.setVisibility(View.GONE);
             }
 
             @Override
@@ -104,5 +110,6 @@ public class MyTaskFragment extends Fragment {
                 Toast.makeText(getContext(), "Oops.. No data", Toast.LENGTH_SHORT).show();
             }
         });
+
     }
 }

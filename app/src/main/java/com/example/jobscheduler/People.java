@@ -4,11 +4,6 @@ public class People {
     int image;
     String text;
 
-    public People(int image, String text) {
-        this.image = image;
-        this.text = text;
-    }
-
     public int getImage() {
         return image;
     }
@@ -23,5 +18,13 @@ public class People {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public People(int image, String text) {
+        this.image = image;
+        this.text = text;
+    }
+
+    public People() {
     }
 }

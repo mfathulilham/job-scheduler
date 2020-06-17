@@ -79,7 +79,7 @@
         android:drawablePadding="20dp"
         android:textSize="17sp"/>
     <TextView
-        android:id="@+id/callProfile"
+        android:id="@+id/phoneProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="081298069650"
@@ -90,7 +90,22 @@
         android:drawableLeft="@drawable/ic_call"
         android:drawablePadding="15dp"
         android:textSize="17sp"/>
+
+    <TextView
+        android:id="@+id/passProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pass"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/phoneProfile"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="15dp"
+        android:drawableLeft="@drawable/ic_call"
+        android:drawablePadding="15dp"
+        android:textSize="17sp"/>
+
     <Button
+        android:id="@+id/btnLogout"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginBottom="20dp"
@@ -101,5 +116,6 @@
         android:textColor="@color/red"
         app:layout_constraintBottom_toBottomOf="parent"
         />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

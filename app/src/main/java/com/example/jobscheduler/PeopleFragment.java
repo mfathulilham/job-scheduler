@@ -51,12 +51,11 @@ public class PeopleFragment extends Fragment {
         pList.add(new People(R.drawable.ic_user_3, "Fathulzz"));
         pList.add(new People(R.drawable.ic_user_1, "Lisa"));
         pList.add(new People(R.drawable.ic_user_3, "Ali"));
-        pList.add(new People(R.drawable.ic_user_2, "Ica"));
+        pList.add(new People(R.drawable.ic_user_2, "Rose"));
         pList.add(new People(R.drawable.ic_user_1, "Jennie"));
         pList.add(new People(R.drawable.ic_user_2, "Soodam"));
         pList.add(new People(R.drawable.ic_user_3, "G-dragon"));
         pList.add(new People(R.drawable.ic_user_3, "Taeyang"));
-        pList.add(new People(R.drawable.ic_user_1, "Rose"));
 
 
     }

@@ -1,16 +1,14 @@
 package com.example.jobscheduler;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.StringRes;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,41 +22,38 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
     private EditText edtEmail,edtPass;
-    private AlertDialog alertDialog;
-    private Button login;
-    private String email, pass;
+//    private AlertDialog alertDialog;
     private FirebaseAuth mAuth;
-    private TextView tvRegis;
-    private ProgressDialog progressDialog;
-    private FirebaseAuth.AuthStateListener mAuthListener;
+    private ProgressBar progressBar;
+//    private FirebaseAuth.AuthStateListener mAuthListener;
     private FirebaseUser firebaseUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        progressBar = findViewById(R.id.progressBar);
         edtEmail = findViewById(R.id.edtEmail);
         edtPass = findViewById(R.id.edtPass);
-        login = findViewById(R.id.btnLogin);
-        tvRegis = findViewById(R.id.tvRegister);
+        Button login = findViewById(R.id.btnLogin);
+        TextView tvRegis = findViewById(R.id.tvRegister);
         login.setOnClickListener(this);
         tvRegis.setOnClickListener(this);
 
         mAuth = FirebaseAuth.getInstance();
-        firebaseUser = mAuth.getCurrentUser();
 
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null){
-                    String UserId = firebaseUser.getUid();
-                    firebaseUser = user;
-                    Toast.makeText(LoginActivity.this,"User ID\n"+UserId ,Toast.LENGTH_SHORT).show();
-                }
-                else Toast.makeText(LoginActivity.this,"No Id Got",Toast.LENGTH_SHORT).show();
-            }
-        };
+//        mAuthListener = new FirebaseAuth.AuthStateListener() {
+//            @Override
+//            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+//                FirebaseUser user = firebaseAuth.getCurrentUser();
+//                if (user != null){
+//                    String UserId = firebaseUser.getUid();
+//                    firebaseUser = user;
+//                    Toast.makeText(LoginActivity.this,"User ID\n"+UserId ,Toast.LENGTH_SHORT).show();
+//                }
+//                else Toast.makeText(LoginActivity.this,"No Id Got",Toast.LENGTH_SHORT).show();
+//            }
+//        };
     }
 
 //    @Override
@@ -70,6 +65,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onStart() {
         super.onStart();
+        if (firebaseUser != null)
         firebaseUser = mAuth.getCurrentUser();
     }
 
@@ -90,12 +86,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private void userLogin() {
 
-        email = edtEmail.getText().toString().trim();
-        pass = edtPass.getText().toString().trim();
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Wait a second");
-        progressDialog.show();
-
+        progressBar.setVisibility(View.VISIBLE);
+        String email = edtEmail.getText().toString().trim();
+        String pass = edtPass.getText().toString().trim();
+//        progressBar = new ProgressBar(this);
+//        progressBar.setMessage("Wait a second");
         if (email.isEmpty() || pass.isEmpty()){
             if (email.isEmpty()){
                 edtEmail.setError("Insert username first");
@@ -103,7 +98,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             if (pass.isEmpty()){
                 edtPass.setError("Insert password first");
             }
-            progressDialog.dismiss();
+            progressBar.setVisibility(View.GONE);
         }
         else {
 
@@ -122,7 +117,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 Toast.makeText(LoginActivity.this, "Login failed, check again!",
                                         Toast.LENGTH_SHORT).show();
                             }
-                            progressDialog.dismiss();
+                            progressBar.setVisibility(View.GONE);
                             // ...
                         }
                     });
