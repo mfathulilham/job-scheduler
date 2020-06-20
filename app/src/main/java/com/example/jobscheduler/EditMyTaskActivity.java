@@ -14,34 +14,40 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Random;
 
-
-public class AddMyTaskActivity extends AppCompatActivity implements View.OnClickListener {
+public class EditMyTaskActivity extends AppCompatActivity implements View.OnClickListener {
 
     EditText edtTitle, edtDeskripsi, edtDue;
     Button btnAdd, btnCancel;
-    String title, desc, due;
-
     private DatabaseReference mdatabase;
     FirebaseUser firebaseUser;
-    Integer numRandom = new Random().nextInt();
-    String keyMyTask = Integer.toString(numRandom);
-    private String uid;
+    private String keyMyTask;
+
+    String title, desc, due;
+
+    public EditMyTaskActivity() {
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_my_task);
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        firebaseUser = mAuth.getCurrentUser();
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        mdatabase = database.getReference("MyTask");
-        uid= firebaseUser.getUid();
-
+        setContentView(R.layout.activity_edit_my_task);
         edtTitle = findViewById(R.id.edtTitle);
         edtDeskripsi = findViewById(R.id.edtDeskripsi);
         edtDue = findViewById(R.id.edtDue);
-        btnAdd = findViewById(R.id.btnAdd);
+        btnAdd = findViewById(R.id.btnEdit);
         btnCancel = findViewById(R.id.btnCancel);
+
+        edtTitle.setText(getIntent().getStringExtra("titleMyTask"));
+        edtDeskripsi.setText(getIntent().getStringExtra("DescMyTask"));
+        edtDue.setText(getIntent().getStringExtra("DueMyTask"));
+        keyMyTask = getIntent().getStringExtra("keyMyTask");
+
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        firebaseUser = mAuth.getCurrentUser();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        //    String keyMyTask = Integer.toString(numRandom);
+        String uid = firebaseUser.getUid();
+        mdatabase = database.getReference("MyTask").child(uid).child("MyTask" + keyMyTask);
 
         btnAdd.setOnClickListener(this);
         btnCancel.setOnClickListener(this);
@@ -50,20 +56,18 @@ public class AddMyTaskActivity extends AppCompatActivity implements View.OnClick
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.btnAdd: {
+            case R.id.btnEdit: {
                 title = edtTitle.getText().toString().trim();
                 desc = edtDeskripsi.getText().toString().trim();
                 due = edtDue.getText().toString().trim();
                 MyTask myTask = new MyTask(title, desc, due, keyMyTask);
 //                mdatabase.child(uid).child("MyTask" + numRandom).setValue(myTask);
-//                mdatabase.child(uid).push().setValue(myTask);
-                mdatabase.child(uid).child("MyTask" + numRandom).setValue(myTask);
+                mdatabase.setValue(myTask);
                 finish();
             }
             case R.id.btnCancel: {
                 finish();
             }
-
         }
     }
 }

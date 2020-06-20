@@ -1,6 +1,5 @@
 package com.example.jobscheduler;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -50,6 +49,7 @@ public class ProfileFragment extends Fragment {
         tvEmail = view.findViewById(R.id.emailProfile);
         tvPhone = view.findViewById(R.id.phoneProfile);
         pass = view.findViewById(R.id.passProfile);
+
         Button btnLogout = view.findViewById(R.id.btnLogout);
 
         mAuth = FirebaseAuth.getInstance();
@@ -86,24 +86,12 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 //set code to retrieve data and replace Layout
-                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                    if (dataSnapshot1.exists()){
-                        tvNama.setText(dataSnapshot1.child("username").getValue(String.class));
-                        tvOccup.setText(dataSnapshot1.child("occup").getValue(String.class));
-                        tvEmail.setText(dataSnapshot1.child("email").getValue(String.class));
-                        tvAddrress.setText(dataSnapshot1.child("address").getValue(String.class));
-                        tvPhone.setText(dataSnapshot1.child("phone").getValue(String.class));
-                        pass.setText(dataSnapshot1.child("pass").getValue(String.class));
-
-//                        Profile profile = dataSnapshot1.getValue(Profile.class);
-//                        tvNama.setText(profile.getUsername());
-//                        tvOccup.setText(profile.getOccup());
-//                        tvEmail.setText(profile.getEmail());
-//                        tvAddrress.setText(profile.getAddress());
-//                        tvPhone.setText(profile.getPhone());
-//                        Toast.makeText(getContext(), "data showed", Toast.LENGTH_SHORT).show();
-                    }
-                }
+                        tvNama.setText(dataSnapshot.child("username").getValue(String.class));
+                        tvOccup.setText(dataSnapshot.child("occup").getValue(String.class));
+                        tvEmail.setText(dataSnapshot.child("email").getValue(String.class));
+                        tvAddrress.setText(dataSnapshot.child("address").getValue(String.class));
+                        tvPhone.setText(dataSnapshot.child("phone").getValue(String.class));
+                        pass.setText(dataSnapshot.child("pass").getValue(String.class));
             }
 
             @Override

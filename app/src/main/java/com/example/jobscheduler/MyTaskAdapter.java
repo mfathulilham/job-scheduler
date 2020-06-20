@@ -1,6 +1,7 @@
 package com.example.jobscheduler;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,7 +35,24 @@ import java.util.List;
         holder.tvTitle.setText(tList.get(position).getTitle());
         holder.tvDesc.setText(tList.get(position).getDesc());
         holder.tvDue.setText(tList.get(position).getDue());
+
+        final String getTitleTask = tList.get(position).getTitle();
+        final String getDescTask = tList.get(position).getDesc();
+        final String getDueTask = tList.get(position).getDue();
+        final String getKeyMyTask = tList.get(position).getKeyMyTask();
+
 //        Log.d("TESTING","Value Of List"+tList.get(0).getTitle());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context,EditMyTaskActivity.class);
+                intent.putExtra("titleMyTask", getTitleTask);
+                intent.putExtra("DescMyTask", getDescTask);
+                intent.putExtra("DueMyTask", getDueTask);
+                intent.putExtra("keyMyTask", getKeyMyTask);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -43,7 +61,7 @@ import java.util.List;
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView tvTitle,tvDesc,tvDue;
+        TextView tvTitle,tvDesc,tvDue,keyMyTask;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             tvTitle = itemView.findViewById(R.id.taskTitle);
