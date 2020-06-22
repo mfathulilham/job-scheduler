@@ -1,30 +1,30 @@
 package com.example.jobscheduler;
 
 public class People {
-    int image;
-    String text;
-
-    public int getImage() {
-        return image;
-    }
-
-    public void setImage(int image) {
-        this.image = image;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    public People(int image, String text) {
-        this.image = image;
-        this.text = text;
-    }
+    private String username,occup;
 
     public People() {
+
+    }
+
+    public People(String username, String occup) {
+        this.username = username;
+        this.occup = occup;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getOccup() {
+        return occup;
+    }
+
+    public void setOccup(String occup) {
+        this.occup = occup;
     }
 }

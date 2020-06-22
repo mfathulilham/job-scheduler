@@ -1,25 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:id="@+id/linearContainer"
     android:layout_marginTop="13dp"
     android:layout_marginBottom="13dp"
-    android:layout_marginLeft="5dp">
+    android:layout_marginStart="5dp">
     
     <ImageView
         android:id="@+id/ivPeople"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:src="@drawable/ic_user_3"/>
     <TextView
-        android:id="@+id/tvPeople"
+        android:id="@+id/tvName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/ivPeople"
         android:text="Fathulzz"
-        android:textSize="30sp"
+        android:textSize="25sp"
         style="@style/title_text"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="5dp"/>
+        android:layout_marginStart="30dp"/>
+    <TextView
+        android:id="@+id/tvOccup"
+        android:layout_below="@id/tvName"
+        android:layout_toRightOf="@id/ivPeople"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mahasiswa"
+        android:textSize="20sp"
+        android:layout_marginStart="30dp"/>
 
-</LinearLayout>
+</RelativeLayout>

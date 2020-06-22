@@ -9,36 +9,29 @@
     tools:context=".PeopleFragment">
 
     <!-- TODO: Update blank fragment layout -->
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_centerInParent="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
     <TextView
         android:id="@+id/tvHai"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="40sp"
-        android:text="Hi, "/>
-    <TextView
-        android:id="@+id/tvName"
-        android:layout_toRightOf="@id/tvHai"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="40sp"
-        android:text="Fathul"
+        android:textSize="30sp"
+        android:text="JOB SCHEDULER"
         style="@style/title_text"/>
-    <ImageView
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:src="@drawable/ic_user_6"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="35dp"/>
     <EditText
         android:id="@+id/edtSearch"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_below="@id/tvHai"
-        android:hint="Search..."
-        android:drawableLeft="@drawable/ic_search"
+        android:hint="@string/search"
+        android:drawableStart="@drawable/ic_search"
         app:layout_constraintTop_toBottomOf="@id/tvHai"
         android:layout_marginTop="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginEnd="20dp"
         android:padding="10dp"
         android:drawablePadding="10dp"
         android:background="@drawable/stroke_black"/>

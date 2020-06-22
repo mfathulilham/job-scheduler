@@ -33,8 +33,12 @@ public class PeopleAdapter extends RecyclerView.Adapter<PeopleAdapter.MyViewHold
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.imageView.setImageResource(pList.get(position).getImage());
-        holder.textView.setText(pList.get(position).getText());
+//        holder.imageView.setImageResource(pList.get(position).getImage());
+//        holder.textView.setText(pList.get(position).getText());
+        holder.tvName.setText(pList.get(position).getUsername());
+        holder.tvOccup.setText(pList.get(position).getOccup());
+//        holder.tvDesc.setText(tList.get(position).getDesc());
+//        holder.tvDue.setText(tList.get(position).getDue());
     }
 
     @Override
@@ -43,15 +47,16 @@ public class PeopleAdapter extends RecyclerView.Adapter<PeopleAdapter.MyViewHold
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        ImageView imageView;
-        TextView textView;
+//        ImageView imageView;
+        TextView tvName, tvOccup;
 
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            imageView = itemView.findViewById(R.id.ivPeople);
-            textView = itemView.findViewById(R.id.tvPeople);
+//            imageView = itemView.findViewById(R.id.ivPeople);
+            tvName = itemView.findViewById(R.id.tvName);
+            tvOccup = itemView.findViewById(R.id.tvOccup);
         }
     }
 }

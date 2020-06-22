@@ -27,7 +27,7 @@ import com.google.firebase.database.ValueEventListener;
  */
 public class ProfileFragment extends Fragment {
 
-    private TextView tvNama,tvOccup,tvAddrress,tvEmail,tvPhone,pass;
+    private TextView tvNama,tvOccup,tvAddrress,tvEmail,tvPhone;
 
     private DatabaseReference mdatabase;
     private FirebaseAuth mAuth;
@@ -48,7 +48,6 @@ public class ProfileFragment extends Fragment {
         tvAddrress = view.findViewById(R.id.addressProfile);
         tvEmail = view.findViewById(R.id.emailProfile);
         tvPhone = view.findViewById(R.id.phoneProfile);
-        pass = view.findViewById(R.id.passProfile);
 
         Button btnLogout = view.findViewById(R.id.btnLogout);
 
@@ -91,7 +90,6 @@ public class ProfileFragment extends Fragment {
                         tvEmail.setText(dataSnapshot.child("email").getValue(String.class));
                         tvAddrress.setText(dataSnapshot.child("address").getValue(String.class));
                         tvPhone.setText(dataSnapshot.child("phone").getValue(String.class));
-                        pass.setText(dataSnapshot.child("pass").getValue(String.class));
             }
 
             @Override
