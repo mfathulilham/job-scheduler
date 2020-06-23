@@ -16,4 +16,7 @@
     <string name="due_date">Due Date</string>
     <string name="cancel">Cancel</string>
     <string name="search">Search...</string>
+
+    <string name="dateformate">dd/MM/yyyy</string>
+    <string name="hour_minutes">HH:mm</string>
 </resources>

@@ -111,7 +111,6 @@ public class PeopleFragment extends Fragment {
                     if (dataSnapshot1.exists()){
 //                        People people = dataSnapshot1.child(uid).getValue(People.class);
                         People people = dataSnapshot1.getValue(People.class);
-//                        if ()
                         pList.add(people);
                     }
                 }

@@ -1,25 +1,21 @@
 package com.example.jobscheduler;
 
 public class MyTask {
-    private String title,desc,due,keyMyTask;
+    private String title,
+            desc,
+            keyMyTask,
+            date,
+            time;
 
     public MyTask() {
-
     }
 
-    public MyTask(String title, String desc, String due, String keyMyTask) {
+    public MyTask(String title, String desc, String keyMyTask, String date, String time) {
         this.title = title;
         this.desc = desc;
-        this.due = due;
         this.keyMyTask = keyMyTask;
-    }
-
-    public String getKeyMyTask() {
-        return keyMyTask;
-    }
-
-    public void setKeyMyTask(String keyMyTask) {
-        this.keyMyTask = keyMyTask;
+        this.date = date;
+        this.time = time;
     }
 
     public String getTitle() {
@@ -30,8 +26,15 @@ public class MyTask {
         return desc;
     }
 
-    public String getDue() {
-        return due;
+    public String getKeyMyTask() {
+        return keyMyTask;
     }
 
+    public String getDate() {
+        return date;
+    }
+
+    public String getTime() {
+        return time;
+    }
 }

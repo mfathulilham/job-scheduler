@@ -34,11 +34,13 @@ import java.util.List;
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.tvTitle.setText(tList.get(position).getTitle());
         holder.tvDesc.setText(tList.get(position).getDesc());
-        holder.tvDue.setText(tList.get(position).getDue());
+        holder.timePicker.setText(tList.get(position).getTime());
+        holder.datePicker.setText(tList.get(position).getDate());
 
         final String getTitleTask = tList.get(position).getTitle();
         final String getDescTask = tList.get(position).getDesc();
-        final String getDueTask = tList.get(position).getDue();
+        final String getTime = tList.get(position).getTime();
+        final String getDate = tList.get(position).getDate();
         final String getKeyMyTask = tList.get(position).getKeyMyTask();
 
 //        Log.d("TESTING","Value Of List"+tList.get(0).getTitle());
@@ -48,7 +50,8 @@ import java.util.List;
                 Intent intent = new Intent(context,EditMyTaskActivity.class);
                 intent.putExtra("titleMyTask", getTitleTask);
                 intent.putExtra("DescMyTask", getDescTask);
-                intent.putExtra("DueMyTask", getDueTask);
+                intent.putExtra("DateMyTask", getDate);
+                intent.putExtra("TimeMyTask", getTime);
                 intent.putExtra("keyMyTask", getKeyMyTask);
                 context.startActivity(intent);
             }
@@ -61,13 +64,13 @@ import java.util.List;
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView tvTitle,tvDesc,tvDue,keyMyTask;
+        TextView tvTitle,tvDesc,keyMyTask,datePicker, timePicker;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             tvTitle = itemView.findViewById(R.id.taskTitle);
             tvDesc = itemView.findViewById(R.id.taskDeskripsi);
-            tvDue = itemView.findViewById(R.id.taskDue);
-
+            datePicker = itemView.findViewById(R.id.dateDue);
+            timePicker = itemView.findViewById(R.id.timeDue);
         }
     }
 }
