@@ -19,4 +19,11 @@
 
     <string name="dateformate">dd/MM/yyyy</string>
     <string name="hour_minutes">HH:mm</string>
+    <string name="masukkan_email">Masukkan Email</string>
+
+    <string-array name="spinnerAssigned">
+        <item>Fathul</item>
+        <item>Sir_Ilham</item>
+    </string-array>
+
 </resources>

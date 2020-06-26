@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".AddMyTaskActivity">
+    tools:context=".AddAssignedActivity">
 
     <View
         android:id="@+id/view2"
@@ -19,12 +19,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:text="Add New Task"
+        android:text="Assigned Task"
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -59,6 +58,23 @@
                 android:background="@drawable/stroke_black"
                 android:hint="@string/deskripsi"
                 android:paddingLeft="15dp" />
+
+            <TextView
+                style="@style/title_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Select One :"
+                android:textSize="19sp" />
+
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="15dp"
+                android:hint="@string/deskripsi"
+                android:elevation="5dp"
+                android:paddingLeft="15dp"/>
 
             <TextView
                 android:id="@+id/textView5"

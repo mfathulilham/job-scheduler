@@ -3,7 +3,6 @@
     package="com.example.jobscheduler">
 
     <uses-permission android:name="android.permission.INTERNET" />
-<!--    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />-->
 
     <application
         android:allowBackup="true"
@@ -12,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".EditMyTaskActivity"></activity>
+        <activity android:name=".AddAssignedActivity"></activity>
+        <activity android:name=".AddPeopleActivity" />
+        <activity android:name=".EditMyTaskActivity" />
         <activity android:name=".AddMyTaskActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity" />

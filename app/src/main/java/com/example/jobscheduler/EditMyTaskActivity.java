@@ -68,38 +68,38 @@ public class EditMyTaskActivity extends AppCompatActivity implements View.OnClic
         btnCancel.setOnClickListener(this);
     }
 
-    private void setTime() {
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-        Time time1 = null;
-        try {
-            time1 = (Time) sdf.parse(time);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        Calendar c = Calendar.getInstance();
-        c.setTime(time1);
-
-        pickerTime = new TimePicker(getApplicationContext());
-        pickerTime.setHour(c.get(Calendar.HOUR_OF_DAY));
-        pickerTime.setMinute(c.get(Calendar.MINUTE));
-    }
-
-    private void setDate() {
-        SimpleDateFormat sdf = new SimpleDateFormat("d MMM yyyy");
-        Date date1 = null;
-        try {
-            date1 = (Date) sdf.parse(date);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        Calendar c = Calendar.getInstance();
-        c.setTime(date1);
+//    private void setTime() {
+//        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+//        Time time1 = null;
+//        try {
+//            time1 = (Time) sdf.parse(time);
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+//        Calendar c = Calendar.getInstance();
+//        c.setTime(time1);
+//
+//        pickerTime = new TimePicker(getApplicationContext());
+//        pickerTime.setHour(c.get(Calendar.HOUR_OF_DAY));
+//        pickerTime.setMinute(c.get(Calendar.MINUTE));
+//    }
+//
+//    private void setDate() {
+//        SimpleDateFormat sdf = new SimpleDateFormat("d MMM yyyy");
+//        Date date1 = null;
+//        try {
+//            date1 = (Date) sdf.parse(date);
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+//        Calendar c = Calendar.getInstance();
+//        c.setTime(date1);
 
 //        pickerDate = new DatePicker(getApplicationContext());
 //        pickerDate.updset(c.get(Calendar.MONTH));
 //        pickerDate.set(Calendar.DAY_OF_MONTH, pickerDate.getDayOfMonth());
 //        pickerDate.set(Calendar.YEAR, pickerDate.getYear());
-    }
+//    }
 
     @Override
     public void onClick(View view) {
@@ -107,7 +107,6 @@ public class EditMyTaskActivity extends AppCompatActivity implements View.OnClic
             case R.id.btnEdit: {
                 title = edtTitle.getText().toString().trim();
                 desc = edtDeskripsi.getText().toString().trim();
-                due = edtDue.getText().toString().trim();
                 getDateTime();
                 MyTask myTask = new MyTask(title, desc, keyMyTask, dateString, timeString);
 //                mdatabase.child(uid).child("MyTask" + numRandom).setValue(myTask);
