@@ -21,6 +21,7 @@
         android:layout_height="wrap_content"
         android:textSize="25sp"
         android:text="JOB SCHEDULER"
+        android:textStyle="bold"
         android:fontFamily="cursive"/>
     <EditText
         android:id="@+id/edtSearch"

@@ -9,11 +9,14 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,6 +40,7 @@ import java.util.List;
  */
 public class PeopleFragment extends Fragment {
 
+    EditText search;
     private ProgressBar progressBar;
     private TextView tvName;
     private RecyclerView recyclerView;
@@ -44,7 +48,7 @@ public class PeopleFragment extends Fragment {
     //    private List<PeopleFilter> fList;
     private PeopleAdapter peopleAdapter;
     private String uid;
-
+    ArrayList<String> names;
 
     private DatabaseReference mdatabase;
     FirebaseDatabase database;
@@ -63,6 +67,7 @@ public class PeopleFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_people, container, false);
         recyclerView = view.findViewById(R.id.rvPeople);
         progressBar = view.findViewById(R.id.progressBar);
+        search = view.findViewById(R.id.edtSearch);
 //        FloatingActionButton floatingActionButton = view.findViewById(R.id.fab);
 
         mAuth = FirebaseAuth.getInstance();
@@ -79,6 +84,45 @@ public class PeopleFragment extends Fragment {
 //                startActivity(intent);
 //            }
 //        });
+        search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+//                Query query = database.getReference("Users").equalTo(editable.toString());
+                database.getReference("Users").orderByChild("username").equalTo(editable.toString()).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.exists()){
+                            pList.clear();
+                            for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                                People people = postSnapshot.getValue(People.class);
+                                pList.add(people);
+                            }
+                        }
+                        peopleAdapter = new PeopleAdapter(pList, getContext());
+                        recyclerView.setAdapter(peopleAdapter);
+                        peopleAdapter.notifyDataSetChanged();
+                        progressBar.setVisibility(View.INVISIBLE);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        Toast.makeText(getContext(), "No Username Found!",
+                                Toast.LENGTH_SHORT).show();
+                        progressBar.setVisibility(View.INVISIBLE);
+                    }
+                });
+            }
+        });
 
         return view;
     }

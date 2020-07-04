@@ -56,9 +56,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="15dp"
+                android:paddingLeft="15dp"
                 android:background="@drawable/stroke_black"
-                android:hint="@string/deskripsi"
-                android:paddingLeft="15dp" />
+                android:hint="@string/deskripsi"/>
 
             <TextView
                 android:id="@+id/textView5"

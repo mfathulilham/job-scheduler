@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PeopleAdapter extends RecyclerView.Adapter<PeopleAdapter.MyViewHolder> {
@@ -58,5 +59,8 @@ public class PeopleAdapter extends RecyclerView.Adapter<PeopleAdapter.MyViewHold
             tvName = itemView.findViewById(R.id.tvName);
             tvOccup = itemView.findViewById(R.id.tvOccup);
         }
+
     }
+
+
 }

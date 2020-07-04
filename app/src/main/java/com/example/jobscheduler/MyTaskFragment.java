@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -23,8 +24,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 //import java.util.Random;
 
 
@@ -43,6 +48,8 @@ public class MyTaskFragment extends Fragment {
     private FirebaseAuth mAuth;
     private FirebaseUser firebaseUser;
 
+    private String dateString;
+    private SimpleDateFormat dateformatter;
 //    Integer numRandom = new Random().nextInt();
 
     public MyTaskFragment() {
@@ -55,9 +62,8 @@ public class MyTaskFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_my_task, container, false);
 
-
         progressBar = view.findViewById(R.id.progressBar);
-
+        Button btnShow = view.findViewById(R.id.btnShow);
         recyclerView = view.findViewById(R.id.rvMyTask);
         mAuth = FirebaseAuth.getInstance();
         firebaseUser = mAuth.getCurrentUser();
@@ -75,6 +81,14 @@ public class MyTaskFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+        btnShow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), HistoryTaskActivity.class);
+                startActivity(intent);
+            }
+        });
         return view;
     }
 
@@ -89,8 +103,8 @@ public class MyTaskFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         tList = new ArrayList<>();
-
-        mdatabase.addValueEventListener(new ValueEventListener() {
+        getDateTime();
+        mdatabase.orderByChild("date").startAt(dateString).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 //set code to retrieve data and replace Layout
@@ -110,6 +124,13 @@ public class MyTaskFragment extends Fragment {
                 Toast.makeText(getContext(), "Oops.. No data", Toast.LENGTH_SHORT).show();
             }
         });
+    }
 
+    private void getDateTime() {
+        Calendar calender = Calendar.getInstance();
+//        formatter = new SimpleDateFormat("HH:mm", Locale.getDefault());
+//        timeString = formatter.format(new Date(calender.getTimeInMillis()));
+        dateformatter = new SimpleDateFormat("d MMM yyyy",Locale.getDefault());
+        dateString = dateformatter.format(new Date(calender.getTimeInMillis()));
     }
 }

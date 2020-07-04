@@ -11,6 +11,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -82,7 +83,8 @@ public class AddAssignedActivity extends AppCompatActivity implements View.OnCli
 
                 @Override
                 public void onNothingSelected(AdapterView<?> adapterView) {
-
+                    Toast.makeText(AddAssignedActivity.this, "failed",
+                            Toast.LENGTH_SHORT).show();
                 }
             });
         }
@@ -100,7 +102,8 @@ public class AddAssignedActivity extends AppCompatActivity implements View.OnCli
 
                 @Override
                 public void onNothingSelected(AdapterView<?> adapterView) {
-
+                    Toast.makeText(AddAssignedActivity.this, "failed",
+                            Toast.LENGTH_SHORT).show();
                 }
             });
         }
@@ -129,6 +132,8 @@ public class AddAssignedActivity extends AppCompatActivity implements View.OnCli
 //                mdatabase.child(uid).child("MyTask" + numRandom).setValue(myTask);
 //                mdatabase.child(uid).push().setValue(myTask);
                 mdatabase.child(key).child("Assigned" + numRandom).setValue(assigned);
+                Toast.makeText(AddAssignedActivity.this, "Succesfully",
+                        Toast.LENGTH_SHORT).show();
                 finish();
                 break;
             }

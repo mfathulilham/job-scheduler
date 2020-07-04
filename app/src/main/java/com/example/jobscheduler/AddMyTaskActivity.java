@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -71,6 +72,8 @@ public class AddMyTaskActivity extends AppCompatActivity implements View.OnClick
 //                mdatabase.child(uid).child("MyTask" + numRandom).setValue(myTask);
 //                mdatabase.child(uid).push().setValue(myTask);
                 mdatabase.child(uid).child("MyTask" + numRandom).setValue(myTask);
+                Toast.makeText(AddMyTaskActivity.this, "Succesfully",
+                        Toast.LENGTH_SHORT).show();
                 finish();
                 break;
             }

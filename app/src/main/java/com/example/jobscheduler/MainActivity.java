@@ -10,7 +10,10 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
@@ -27,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         nav.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         if(savedInstanceState==null){
-            nav.setSelectedItemId(R.id.tasks);
+            nav.setSelectedItemId(R.id.task);
         }
 
     }
@@ -51,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
                                     .replace(R.id.container_layout,fragment,fragment.getClass().getSimpleName())
                                     .commit();
                             return true;
-                        case R.id.tasks:
+                        case R.id.task:
                             fragment = new TasksFragment();
                             getSupportFragmentManager().beginTransaction()
                                     .replace(R.id.container_layout,fragment,fragment.getClass().getSimpleName())
