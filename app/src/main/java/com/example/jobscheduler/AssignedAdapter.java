@@ -54,4 +54,5 @@ public class AssignedAdapter extends RecyclerView.Adapter<AssignedAdapter.MyView
             timePicker = itemView.findViewById(R.id.timeDue);
         }
     }
+
 }

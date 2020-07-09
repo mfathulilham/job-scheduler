@@ -118,7 +118,6 @@ public class MyTaskFragment extends Fragment {
                 myTaskAdapter.notifyDataSetChanged();
                 progressBar.setVisibility(View.GONE);
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Toast.makeText(getContext(), "Oops.. No data", Toast.LENGTH_SHORT).show();

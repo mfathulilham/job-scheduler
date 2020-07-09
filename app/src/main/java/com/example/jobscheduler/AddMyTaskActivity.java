@@ -56,6 +56,8 @@ public class AddMyTaskActivity extends AppCompatActivity implements View.OnClick
         btnAdd = findViewById(R.id.btnAdd);
         btnCancel = findViewById(R.id.btnCancel);
 
+        pickerTime.setIs24HourView(true);
+
         btnAdd.setOnClickListener(this);
         btnCancel.setOnClickListener(this);
     }
@@ -67,14 +69,24 @@ public class AddMyTaskActivity extends AppCompatActivity implements View.OnClick
                 String title = edtTitle.getText().toString().trim();
                 String desc = edtDeskripsi.getText().toString().trim();
 //                due = edtDue.getText().toString().trim();
-                getDateTime();
-                MyTask myTask = new MyTask(title, desc, keyMyTask, dateString, timeString);
+                if (title.isEmpty() || desc.isEmpty()){
+                    if (title.isEmpty()){
+                        edtTitle.setError("Can't be blank");
+                    }
+                    if (desc.isEmpty()){
+                        edtDeskripsi.setError("Can't be blank");
+                    }
+                }
+                else {
+                    getDateTime();
+                    MyTask myTask = new MyTask(title, desc, keyMyTask, dateString, timeString);
 //                mdatabase.child(uid).child("MyTask" + numRandom).setValue(myTask);
 //                mdatabase.child(uid).push().setValue(myTask);
-                mdatabase.child(uid).child("MyTask" + numRandom).setValue(myTask);
-                Toast.makeText(AddMyTaskActivity.this, "Succesfully",
-                        Toast.LENGTH_SHORT).show();
-                finish();
+                    mdatabase.child(uid).child("MyTask" + numRandom).setValue(myTask);
+                    Toast.makeText(AddMyTaskActivity.this, "Succesfully",
+                            Toast.LENGTH_SHORT).show();
+                    finish();
+                }
                 break;
             }
             case R.id.btnCancel: {
@@ -92,8 +104,7 @@ public class AddMyTaskActivity extends AppCompatActivity implements View.OnClick
         calender.set(Calendar.DAY_OF_MONTH, pickerDate.getDayOfMonth());
         calender.set(Calendar.YEAR, pickerDate.getYear());
         calender.set(Calendar.HOUR, pickerTime.getHour());
-        calender.set(Calendar.MINUTE, pickerTime.getHour());
-        calender.set(Calendar.SECOND, 00);
+        calender.set(Calendar.MINUTE, pickerTime.getMinute());
 
 //        SimpleDateFormat formatter = new SimpleDateFormat(getString(R.string.hour_minutes));
         SimpleDateFormat formatter = new SimpleDateFormat("HH:mm", Locale.getDefault());

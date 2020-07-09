@@ -56,6 +56,13 @@ import java.util.List;
                 context.startActivity(intent);
             }
         });
+
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                return false;
+            }
+        });
     }
 
     @Override

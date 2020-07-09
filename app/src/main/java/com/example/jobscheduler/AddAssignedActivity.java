@@ -63,6 +63,7 @@ public class AddAssignedActivity extends AppCompatActivity implements View.OnCli
         Button btnAdd = findViewById(R.id.btnAdd);
         Button btnCancel = findViewById(R.id.btnCancel);
 
+        pickerTime.setIs24HourView(true);
         showSpin();
         btnAdd.setOnClickListener(this);
         btnCancel.setOnClickListener(this);
@@ -127,14 +128,24 @@ public class AddAssignedActivity extends AppCompatActivity implements View.OnCli
                 String title = edtTitle.getText().toString().trim();
                 String desc = edtDeskripsi.getText().toString().trim();
 //                due = edtDue.getText().toString().trim();
-                getDateTime();
-                Assigned assigned = new Assigned(title, desc, spinFinal ,dateString, timeString);
+                if (title.isEmpty() || desc.isEmpty()){
+                    if (title.isEmpty()){
+                        edtTitle.setError("Can't be blank");
+                    }
+                    if (desc.isEmpty()){
+                        edtDeskripsi.setError("Can't be blank");
+                    }
+                }
+                else {
+                    getDateTime();
+                    Assigned assigned = new Assigned(title, desc, spinFinal ,dateString, timeString);
 //                mdatabase.child(uid).child("MyTask" + numRandom).setValue(myTask);
 //                mdatabase.child(uid).push().setValue(myTask);
-                mdatabase.child(key).child("Assigned" + numRandom).setValue(assigned);
-                Toast.makeText(AddAssignedActivity.this, "Succesfully",
-                        Toast.LENGTH_SHORT).show();
-                finish();
+                    mdatabase.child(key).child("Assigned" + numRandom).setValue(assigned);
+                    Toast.makeText(AddAssignedActivity.this, "Succesfully",
+                            Toast.LENGTH_SHORT).show();
+                    finish();
+                }
                 break;
             }
             case R.id.btnCancel : {

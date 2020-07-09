@@ -21,6 +21,7 @@
     <string name="hour_minutes">HH:mm</string>
     <string name="masukkan_email">Masukkan Email</string>
     <string name="task">Task</string>
+    <string name="select_date">Select Date</string>
 
     <string-array name="spinnerAssigned">
         <item>Fathul</item>

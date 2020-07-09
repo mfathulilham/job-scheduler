@@ -24,6 +24,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.FutureTask;
 
 public class HistoryTaskActivity extends AppCompatActivity {
 
@@ -86,7 +87,6 @@ public class HistoryTaskActivity extends AppCompatActivity {
 
     private void getDateTime() {
         Calendar calender = Calendar.getInstance();
-
 //        formatter = new SimpleDateFormat("HH:mm", Locale.getDefault());
 //        timeString = formatter.format(new Date(calender.getTimeInMillis()));
 
